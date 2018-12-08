@@ -2,16 +2,15 @@ package com.adventofcode;
 
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
+import io.vavr.collection.List;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toCollection;
@@ -20,10 +19,10 @@ import static java.util.stream.IntStream.rangeClosed;
 
 class Day7 {
 
-    String solvePart1(Stream<String> input) {
+    String solvePart1(List<String> input) {
         JobGraph remainingJobs = initJobGraph(input);
         JobQueue jobQueue = new JobQueue(remainingJobs.getNext());
-        List<String> completedJobs = new ArrayList<>();
+        java.util.List<String> completedJobs = new ArrayList<>();
 
         while (jobQueue.hasMore()) {
             String done = jobQueue.remove();
@@ -37,7 +36,7 @@ class Day7 {
         return String.join("", completedJobs);
     }
 
-    int solvePart2(int workersCount, int baseJobTime, Stream<String> input) {
+    int solvePart2(int workersCount, int baseJobTime, List<String> input) {
         PriorityQueue<Integer> workerPool = initWorkerPool(workersCount);
 
         JobGraph remainingJobs = initJobGraph(input);
@@ -91,7 +90,7 @@ class Day7 {
         return (job.charAt(0) - 'A') + 1;
     }
 
-    private JobGraph initJobGraph(Stream<String> input) {
+    private JobGraph initJobGraph(List<String> input) {
         JobGraph graph = new JobGraph();
         input.map(this::parseJobNames).forEach(t -> graph.addEdge(t._2, t._1));
         return graph;
@@ -138,7 +137,7 @@ class Day7 {
             return adjacencyList.isEmpty();
         }
 
-        List<String> getNext() {
+        java.util.List<String> getNext() {
             return adjacencyList.entrySet().stream()
                     .filter(e -> e.getValue().isEmpty())
                     .map(Map.Entry::getKey)
@@ -155,7 +154,7 @@ class Day7 {
         private final PriorityQueue<String> queue = new PriorityQueue<>();
         private final Set<String> processed = new HashSet<>();
 
-        JobQueue(List<String> init) {
+        JobQueue(java.util.List<String> init) {
             queue.addAll(init);
             processed.addAll(init);
         }

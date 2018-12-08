@@ -5,12 +5,10 @@ import io.vavr.Tuple3;
 import io.vavr.collection.HashSet;
 import io.vavr.collection.List;
 
-import java.util.stream.Stream;
-
 class Day1 {
 
-    int solvePart1(Stream<String> lines) {
-        return lines.mapToInt(this::parse).sum();
+    int solvePart1(List<String> lines) {
+        return toListOfInt(lines).sum().intValue();
     }
 
     int solvePart2(List<String> lines) {
@@ -18,8 +16,7 @@ class Day1 {
     }
 
     private int doSolvePart2(int initial, HashSet<Integer> seen, List<String> lines) {
-        Tuple3<Integer, HashSet<Integer>, Integer> result = lines
-                .map(this::parse)
+        Tuple3<Integer, HashSet<Integer>, Integer> result = toListOfInt(lines)
                 .foldLeft(Tuple.of(initial, seen, null), (Tuple3<Integer, HashSet<Integer>, Integer> acc, Integer el) -> {
                     int sumSoFar = acc._1 + el;
                     if (acc._3 != null) {
@@ -33,7 +30,7 @@ class Day1 {
         return result._3 != null ? result._3 : doSolvePart2(result._1, result._2, lines);
     }
 
-    private int parse(String string) {
-        return Integer.parseInt(string);
+    private List<Integer> toListOfInt(List<String> lines) {
+        return lines.map(Integer::parseInt);
     }
 }

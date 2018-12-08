@@ -6,18 +6,17 @@ import io.vavr.collection.Array;
 import io.vavr.collection.IndexedSeq;
 
 import java.util.Map;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 class Day2 {
 
-    long solvePart1(Stream<String> input) {
-        Tuple2<Long, Long> result = input
+    int solvePart1(IndexedSeq<String> input) {
+        Tuple2<Integer, Integer> result = input
                 .map(this::countLetters)
                 .map(this::toCounts)
-                .reduce(Tuple.of(0L, 0L), (a, b) -> Tuple.of(a._1 + b._1, a._2 + b._2));
+                .foldLeft(Tuple.of(0, 0), (a, b) -> Tuple.of(a._1 + b._1, a._2 + b._2));
 
         return result._1 * result._2;
     }
@@ -26,10 +25,10 @@ class Day2 {
         return s.chars().boxed().collect(groupingBy(letter -> (char) letter.intValue(), counting()));
     }
 
-    private Tuple2<Long, Long> toCounts(Map<Character, Long> map) {
+    private Tuple2<Integer, Integer> toCounts(Map<Character, Long> map) {
         return Tuple.of(
-                map.entrySet().stream().anyMatch(e -> e.getValue() == 2) ? 1L : 0,
-                map.entrySet().stream().anyMatch(e -> e.getValue() == 3) ? 1L : 0
+                map.entrySet().stream().anyMatch(e -> e.getValue() == 2) ? 1 : 0,
+                map.entrySet().stream().anyMatch(e -> e.getValue() == 3) ? 1 : 0
         );
     }
 
