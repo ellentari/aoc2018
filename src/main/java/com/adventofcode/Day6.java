@@ -1,5 +1,6 @@
 package com.adventofcode;
 
+import com.adventofcode.comon.Coordinate;
 import io.vavr.Tuple2;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.HashSet;
@@ -204,40 +205,4 @@ class Day6 {
         }
     }
 
-    private static class Coordinate {
-        final int i;
-        final int j;
-
-        Coordinate(int i, int j) {
-            this.i = i;
-            this.j = j;
-        }
-
-        int getI() {
-            return i;
-        }
-
-        int getJ() {
-            return j;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + i + ", " + j + "]";
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Coordinate that = (Coordinate) o;
-            return i == that.i &&
-                    j == that.j;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(i, j);
-        }
-    }
 }
