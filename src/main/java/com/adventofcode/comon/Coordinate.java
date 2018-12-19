@@ -26,6 +26,10 @@ public class Coordinate implements Comparable<Coordinate> {
         return grid[i][j];
     }
 
+    public char at(char[][] grid) {
+        return grid[i][j];
+    }
+
     public Coordinate left() {
         return new Coordinate(i, j - 1);
     }
