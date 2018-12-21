@@ -36,7 +36,7 @@ class Day16Test {
         List<String> input1 = ResourceUtils.readLines("day16.1.txt");
         List<String> input2 = ResourceUtils.readLines("day16.2.txt");
 
-        int result = new Day16().solvePart2(input1, input2);
+        long result = new Day16().solvePart2(input1, input2);
 
         assertThat(result).isEqualTo(485);
     }

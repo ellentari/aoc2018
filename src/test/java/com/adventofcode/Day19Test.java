@@ -1,15 +1,15 @@
 package com.adventofcode;
 
-import io.vavr.collection.List;
+import io.vavr.collection.Array;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Day19Test {
 
     @Test
     void part1Sample() {
-        List<String> input = List.of(
+        Array<String> input = Array.of(
                 "seti 5 0 1",
                 "seti 6 0 2",
                 "addi 0 1 0",
@@ -32,8 +32,8 @@ class Day19Test {
 
     }
 
-    private List<String> input() {
-        return List.of(
+    private Array<String> input() {
+        return Array.of(
                 "addi 3 16 3", // 0 jump to 17
                 "seti 1 8 1",  // 1
                 "seti 1 3 4",  // 2

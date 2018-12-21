@@ -4,69 +4,69 @@ import io.vavr.collection.Array;
 
 interface Opcode {
 
-    Array<Integer> execute(Array<Integer> registers, int a, int b, int c);
+    Array<Long> execute(Array<Long> registers, long a, long b, int c);
 
-    static Array<Integer> addr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) + registers.get(b));
+    static Array<Long> addr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) + registers.get((int) b));
     }
 
-    static Array<Integer> addi(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) + b);
+    static Array<Long> addi(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) + b);
     }
 
-    static Array<Integer> mulr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) * registers.get(b));
+    static Array<Long> mulr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) * registers.get((int) b));
     }
 
-    static Array<Integer> muli(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) * b);
+    static Array<Long> muli(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) * b);
     }
 
-    static Array<Integer> banr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) & registers.get(b));
+    static Array<Long> banr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) & registers.get((int) b));
     }
 
-    static Array<Integer> bani(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) & b);
+    static Array<Long> bani(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) & b);
     }
 
-    static Array<Integer> borr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) | registers.get(b));
+    static Array<Long> borr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) | registers.get((int) b));
     }
 
-    static Array<Integer> bori(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) | b);
+    static Array<Long> bori(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) | b);
     }
 
-    static Array<Integer> setr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a));
+    static Array<Long> setr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a));
     }
 
-    static Array<Integer> seti(Array<Integer> registers, int a, int b, int c) {
+    static Array<Long> seti(Array<Long> registers, long a, long b, int c) {
         return registers.update(c, a);
     }
 
-    static Array<Integer> gtir(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, a > registers.get(b) ? 1 : 0);
+    static Array<Long> gtir(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, a > registers.get((int) b) ? 1L : 0);
     }
 
-    static Array<Integer> gtri(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) > b ? 1 : 0);
+    static Array<Long> gtri(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) > b ? 1L : 0);
     }
 
-    static Array<Integer> gtrr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) > registers.get(b) ? 1 : 0);
+    static Array<Long> gtrr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) > registers.get((int) b) ? 1L : 0);
     }
 
-    static Array<Integer> eqir(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, a == registers.get(b) ? 1 : 0);
+    static Array<Long> eqir(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, a == registers.get((int) b) ? 1L : 0);
     }
 
-    static Array<Integer> eqri(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a) == b ? 1 : 0);
+    static Array<Long> eqri(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a) == b ? 1L : 0);
     }
 
-    static Array<Integer> eqrr(Array<Integer> registers, int a, int b, int c) {
-        return registers.update(c, registers.get(a).equals(registers.get(b)) ? 1 : 0);
+    static Array<Long> eqrr(Array<Long> registers, long a, long b, int c) {
+        return registers.update(c, registers.get((int) a).equals(registers.get((int) b)) ? 1L : 0);
     }
 }

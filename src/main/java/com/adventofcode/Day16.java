@@ -43,16 +43,16 @@ class Day16 {
                 .count(e -> getPossibleOpcodes(e, OPCODES).size() >= 3);
     }
 
-    int solvePart2(List<String> input1, List<String> input2) {
+    long solvePart2(List<String> input1, List<String> input2) {
         Set<Sample> entries = parseSamples(input1).toSet();
         List<Instruction> instructions = parseInstructions(input2);
 
         Map<Integer, Opcode> opcodes = identifyOpcodes(entries, OPCODES);
 
-        return execute(Array.of(0, 0, 0, 0), instructions, opcodes).head();
+        return execute(Array.of(0L, 0L, 0L, 0L), instructions, opcodes).head();
     }
 
-    private Array<Integer> execute(Array<Integer> initial, List<Instruction> instructions, Map<Integer, Opcode> opcodes) {
+    private Array<Long> execute(Array<Long> initial, List<Instruction> instructions, Map<Integer, Opcode> opcodes) {
         return instructions.foldLeft(initial, (registers, instruction) ->
                 opcodes.get(instruction.opcode).get().execute(registers, instruction.a, instruction.b, instruction.c)
         );
@@ -87,7 +87,7 @@ class Day16 {
                 .toList();
     }
 
-    private Option<Array<Integer>> trySample(Sample sample, Opcode opcode) {
+    private Option<Array<Long>> trySample(Sample sample, Opcode opcode) {
         return lift(opcode::execute)
                 .apply(sample.before, sample.instruction.a, sample.instruction.b, sample.instruction.c);
     }
@@ -119,8 +119,8 @@ class Day16 {
         );
     }
 
-    private static Array<Integer> parseRegister(String input) {
-        return Array.ofAll(stream(getArrayFrom(input).split(",\\s+")).map(Integer::parseInt));
+    private static Array<Long> parseRegister(String input) {
+        return Array.ofAll(stream(getArrayFrom(input).split(",\\s+")).map(Long::parseLong));
     }
 
     private static String getArrayFrom(String input) {
@@ -128,11 +128,11 @@ class Day16 {
     }
 
     private static class Sample {
-        final Array<Integer> before;
+        final Array<Long> before;
         final Instruction instruction;
-        final Array<Integer> after;
+        final Array<Long> after;
 
-        Sample(Array<Integer> before, Instruction instruction, Array<Integer> after) {
+        Sample(Array<Long> before, Instruction instruction, Array<Long> after) {
             this.before = before;
             this.instruction = instruction;
             this.after = after;
@@ -156,11 +156,11 @@ class Day16 {
 
     private static class Instruction {
         final int opcode;
-        final int a;
-        final int b;
+        final long a;
+        final long b;
         final int c;
 
-         Instruction(int opcode, int a, int b, int c) {
+         Instruction(int opcode, long a, long b, int c) {
             this.opcode = opcode;
             this.a = a;
             this.b = b;
