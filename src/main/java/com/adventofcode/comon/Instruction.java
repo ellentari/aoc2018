@@ -1,8 +1,8 @@
-package com.adventofcode;
+package com.adventofcode.comon;
 
 import io.vavr.collection.Array;
 
-interface Instruction {
+public interface Instruction {
 
     Array<Long> execute(Array<Long> registers);
 

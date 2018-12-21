@@ -1,5 +1,6 @@
 package com.adventofcode;
 
+import com.adventofcode.comon.Opcode;
 import io.vavr.Tuple2;
 import io.vavr.collection.Array;
 import io.vavr.collection.HashMap;

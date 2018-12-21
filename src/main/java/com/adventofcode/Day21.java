@@ -1,5 +1,6 @@
 package com.adventofcode;
 
+import com.adventofcode.comon.Instruction;
 import io.vavr.collection.Array;
 import io.vavr.collection.Stream;
 

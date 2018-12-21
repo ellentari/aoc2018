@@ -1,8 +1,8 @@
-package com.adventofcode;
+package com.adventofcode.comon;
 
 import io.vavr.collection.Array;
 
-interface Opcode {
+public interface Opcode {
 
     Array<Long> execute(Array<Long> registers, long a, long b, int c);
 
